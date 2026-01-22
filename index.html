@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Communicativ — AR Display Sizer (MindAR A1‑b)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Communicativ — AR Display Sizer</h1>
+    <div class="hint">
+      Print de <strong>poster</strong> uit <code>/print/target-poster-A1b_A4_300dpi.pdf</code> (A4 = 0,297 m breed)
+      en vervang <code>/targets/targets.mind</code> met de compiler‑output op basis van <code>/img/target-poster-A1b.png</code>.
+    </div>
+  </header>
+
+  <main>
+    <section class="controls">
+      <label for="sizeSel">Formaat (diagonaal, 16:9):</label>
+      <select id="sizeSel">
+        <option>32</option><option>43</option><option>50</option>
+        <option>55</option><option selected>65</option><option>75</option>
+        <option>86</option><option>98</option>
+      </select>
+      <label class="inline"><input id="outlineChk" type="checkbox" checked> Outline</label>
+      <label class="inline">Opacity <input id="opacity" type="range" min="0.2" max="1" step="0.05" value="0.95"></label>
+      <button id="shotBtn">Screenshot</button>
+      <span id="sizeInfo" class="muted">—</span>
+    </section>
+
+    <a-scene
+      mindar-image="imageTargetSrc: ./targets/targets.mind; physicalWidth: 0.297"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: true"
+      embedded
+      renderer="colorManagement: true; physicallyCorrectLights: false">
+
+      <a-assets>
+        <img id="panelTex" src="./img/panel-with-logo.png" crossorigin="anonymous"/>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane id="panel" position="0 0 0" rotation="0 0 0" material="src: #panelTex; transparent: true; opacity: 0.95"></a-plane>
+        <a-entity id="edgeTop"></a-entity>
+        <a-entity id="edgeRight"></a-entity>
+        <a-entity id="edgeBottom"></a-entity>
+        <a-entity id="edgeLeft"></a-entity>
+      </a-entity>
+
+    </a-scene>
+  </main>
+</body>
+</html>
