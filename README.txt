@@ -1,4 +1,4 @@
-# Communicativ — MindAR (A1‑b) volledige versie
+# CMNCTV — MindAR (A1‑b) volledige versie
 
 Dit pakket bevat de complete MindAR‑image‑tracking webapp (zonder WebXR/USDZ) en de geprinte target‑poster.
 
